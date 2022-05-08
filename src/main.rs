@@ -2,7 +2,7 @@
  * @Author: vibraion007 dogingate@qq.com
  * @Date: 2022-05-02 22:14:06
  * @LastEditors: vibraion007 dogingate@qq.com
- * @LastEditTime: 2022-05-04 18:30:13
+ * @LastEditTime: 2022-05-07 19:02:20
  * @FilePath: \rust\hello\src\main.rs
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -23,9 +23,10 @@
 // mod loops;
 // mod functions;
 // mod pointers;
-mod structures;
+// mod structures;
+mod rectangle;
 fn main() {
-    structures::run();
+    rectangle::run();
 }
 // let mut width = String::new();
 // io::stdin().read_line(&mut width).expect("Error reading");
