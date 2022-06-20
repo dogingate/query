@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-04-10 12:05:13
- * @LastEditTime: 2022-06-10 13:47:01
+ * @LastEditTime: 2022-06-20 18:47:21
  * @LastEditors: vibration007 dogingate@qq.com
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \hello\src\main.rs
@@ -167,6 +167,51 @@ fn queryGradientTemperature() {
     };
 }
 
+fn queryGradientTemperature2() {
+    let structure_type = loop {
+        println!("please enter the temerature 1:");
+        let mut s1 = String::new();
+        // println!("the number you guess is {}", guess);
+        io::stdin().read_line(&mut s1).expect("Error reading");
+        //shadow
+        let s1: f32 = match s1.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+        println!("please enter the temerature 2:");
+        let mut s2 = String::new();
+        // println!("the number you guess is {}", guess);
+        io::stdin().read_line(&mut s2).expect("Error reading");
+        //shadow
+        let s2: f32 = match s2.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+        println!("please enter the height(mm):");
+        let mut s3 = String::new();
+        // println!("the number you guess is {}", guess);
+        io::stdin().read_line(&mut s3).expect("Error reading");
+        //shadow
+        let s3: f32 = match s3.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+
+        if s1>0.0 & s2>0.0{
+            if s3<100{
+
+            }
+
+            //query if quit the current query or not
+            let ans: bool = queryYesOrNot();
+            if ans == true {
+                break;
+            } else {
+                continue;
+            }
+        }
+    };
+}
 fn queryCrowdLoad() {
     let result = loop {
         let mut s = String::new();
