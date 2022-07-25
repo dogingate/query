@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-04-10 12:05:13
- * @LastEditTime: 2022-06-20 18:47:21
+ * @LastEditTime: 2022-07-25 17:06:38
  * @LastEditors: vibration007 dogingate@qq.com
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \hello\src\main.rs
@@ -135,6 +135,7 @@ fn queryYesOrNot() -> bool {
         }
     }
 }
+
 fn queryGradientTemperature() {
     let structure_type = loop {
         println!("please enter the structure type");
@@ -197,10 +198,8 @@ fn queryGradientTemperature2() {
             Err(_) => continue,
         };
 
-        if s1>0.0 & s2>0.0{
-            if s3<100{
-
-            }
+        if s1 > 0.0 && s2 > 0.0 {
+            if s3 < 100.0 {}
 
             //query if quit the current query or not
             let ans: bool = queryYesOrNot();
@@ -339,6 +338,33 @@ fn queryConcentratedLoadValue() {
     };
 }
 
+fn interpGradientTemperature() {
+    let span = loop {
+        println!("请输入h(mm)");
+        let mut s = String::new();
+        io::stdin().read_line(&mut s).expect("Error reading");
+        let h: f32 = match s.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+        if h > 0.0 && h < 400.0 {
+            let mut t: f32 = 0.0;
+            if h <= 100.0 {
+                t = (14.0 - 5.5) * (100.0 - h) / 100.0 + 5.5;
+            } else if h < 400.0 {
+                t = (400.0 - h) * 5.5 / 300.0;
+            }
+            println!("t ={}", t);
+            //query if quit the current query or not
+            let ans: bool = queryYesOrNot();
+            if ans == true {
+                break;
+            } else {
+                continue;
+            }
+        }
+    };
+}
 fn main() {
     // let x: f32 = 0.2342;
     // println!("abs is {}", x.ln());
@@ -351,6 +377,7 @@ fn main() {
         println!("[4]人群荷载");
         println!("[5]长期增长系数");
         println!("[6]集中荷载标准值");
+        println!("[7]梯度温度插值");
         let mut s = String::new();
         // println!("the number you guess is {}", guess);
         io::stdin().read_line(&mut s).expect("Error reading");
@@ -366,6 +393,7 @@ fn main() {
             4 => queryCrowdLoad(),
             5 => queryLongtermGrowthFactor(),
             6 => queryConcentratedLoadValue(),
+            7 => interpGradientTemperature(),
             _ => continue,
         }
     };
